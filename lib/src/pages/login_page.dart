@@ -123,7 +123,7 @@ class FormLogin extends StatelessWidget {
                               authProvider.user.trim(),
                               authProvider.password.trim());
                           if (login) {
-                            Navigator.pushReplacementNamed(context, 'usuarios');
+                            Navigator.pushReplacementNamed(context, 'home');
                           } else {
                             ShowSnackBar(
                                 context, 'Datos incorrectos', 5, Colors.red);
