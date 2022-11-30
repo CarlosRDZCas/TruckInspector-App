@@ -10,7 +10,7 @@ class IntercambioProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-    List<Intercambio> _intercambioquery = [];
+  List<Intercambio> _intercambioquery = [];
   List<Intercambio> get intercambioquery => _intercambioquery;
   set intercambioquery(List<Intercambio> value) {
     _intercambioquery = value;

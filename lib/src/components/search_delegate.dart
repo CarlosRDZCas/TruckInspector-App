@@ -13,7 +13,6 @@ class CustomSearchDelegate extends SearchDelegate {
     final searchProvider = Provider.of<SearchProvider>(context);
     return [
       DropdownButton(
-        
           icon: const Icon(Icons.filter_alt),
           alignment: Alignment.center,
           borderRadius: BorderRadius.circular(10),

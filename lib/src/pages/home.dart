@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trailerinspector/src/services/auth_service.dart';
 
 import '../components/components.dart';
 import '../provider/providers.dart';
+import '../widgets/widgets.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final intercambioProvider =
-        Provider.of<IntercambioProvider>(context, listen: true);
+    final intercambioProvider = Provider.of<IntercambioProvider>(context);
+
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.red,
+            onPressed: () {
+              Navigator.pushNamed(context, 'operadores');
+            },
+            child: const Icon(Icons.add)),
         backgroundColor: const Color(0XFFF0F0F0),
-        appBar: AppBar(
-          title: const Center(child: Text('Intercambios')),
+        appBar: CustomAppbar(
+          title: 'Intercambios',
           actions: [
             IconButton(
                 onPressed: () {
@@ -24,18 +32,14 @@ class Home extends StatelessWidget {
                 },
                 icon: const Icon(Icons.search))
           ],
-          backgroundColor: CustomColors.primary,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20))),
         ),
-        drawer: const Drawer(),
+        drawer: const CustomDrawer(),
         body: RefreshIndicator(
           onRefresh: () async {
             await intercambioProvider.getIntercambios();
           },
           child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: intercambioProvider.intercambio.length,
             itemBuilder: (BuildContext context, int index) {
               return ListIntercambioCard(index: index);
@@ -47,6 +51,88 @@ class Home extends StatelessWidget {
   }
 }
 
+class CustomDrawer extends StatelessWidget {
+  const CustomDrawer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthService>(context);
+    return Drawer(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        DrawerHeader(
+          margin: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: CustomColors.primary,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(authProvider.usuario!.nombre,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold)),
+              Text(authProvider.usuario!.email,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold)),
+              Text(authProvider.usuario!.puesto,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold)),
+              Text(authProvider.usuario!.sucursal,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        ListTile(
+          title: const Text('Inicio'),
+          leading: const Icon(Icons.home),
+          onTap: () {},
+        ),
+        const Divider(color: Colors.grey),
+        ListTile(
+          title: const Text('Cajones'),
+          leading: const Icon(Icons.add_road),
+          onTap: () {},
+        ),
+        const Divider(color: Colors.grey),
+        ListTile(
+          title: const Text('Reportes'),
+          leading: const Icon(Icons.bar_chart),
+          onTap: () {},
+        ),
+        const Divider(color: Colors.grey),
+        Expanded(
+          child: Align(
+            alignment: FractionalOffset.bottomCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Divider(color: Colors.grey),
+                ListTile(
+                  title: const Text('Cerrar Sesion'),
+                  leading: const Icon(Icons.logout),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ));
+  }
+}
+
 class ListIntercambioCard extends StatelessWidget {
   const ListIntercambioCard({Key? key, required this.index}) : super(key: key);
   final int index;
@@ -55,7 +141,7 @@ class ListIntercambioCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final intercambioProvider = Provider.of<IntercambioProvider>(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.all(6.0),
       child: Card(
         elevation: 3,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -69,7 +155,7 @@ class ListIntercambioCard extends StatelessWidget {
                 'assets/images/logo.png',
                 fit: BoxFit.fill,
                 width: 70,
-                height: 120,
+                height: 110,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

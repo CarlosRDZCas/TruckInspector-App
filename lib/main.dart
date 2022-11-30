@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,7 +8,19 @@ import 'package:trailerinspector/src/services/auth_service.dart';
 
 import 'src/provider/providers.dart';
 
-void main() => runApp(const TruckInspector());
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+void main() {
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(const TruckInspector());
+}
 
 class TruckInspector extends StatelessWidget {
   const TruckInspector({super.key});
@@ -19,6 +33,7 @@ class TruckInspector extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthService()),
         ChangeNotifierProvider(create: (_) => IntercambioProvider()),
         ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(create: (_) => OperadorProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

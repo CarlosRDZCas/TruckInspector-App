@@ -14,6 +14,12 @@ getRoutes() {
       case 'home':
         return CupertinoPageRoute(
             builder: (_) => const Home(), settings: settings);
+      case 'operadores':
+        return CupertinoPageRoute(
+            builder: (_) => const SearchOperador(), settings: settings);
+      case 'addoperador':
+        return CupertinoPageRoute(
+            builder: (_) => const AddOperador(), settings: settings);
     }
   };
 }
