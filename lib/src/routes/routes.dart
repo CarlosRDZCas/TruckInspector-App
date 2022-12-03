@@ -20,6 +20,9 @@ getRoutes() {
       case 'addoperador':
         return CupertinoPageRoute(
             builder: (_) => const AddOperador(), settings: settings);
+      case 'addintercambio':
+        return CupertinoPageRoute(
+            builder: (_) => const AddIntercambio(), settings: settings);
     }
   };
 }

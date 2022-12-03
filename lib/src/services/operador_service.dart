@@ -32,9 +32,7 @@ class OperadorService {
   }
 
   static Future<bool> postImageOperador(String path) async {
-    if (path.isEmpty) {
-      return true;
-    }
+  
     final request = http.MultipartRequest(
         "POST", Uri.parse('${Enviroment.API_URL}/v1/postImageOperador'));
     final headers = {"Content-type": "multipart/form-data"};

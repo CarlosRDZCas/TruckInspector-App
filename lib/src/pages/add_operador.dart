@@ -156,7 +156,7 @@ class AddOperador extends StatelessWidget {
                     child: operadorProvider.image.isEmpty
                         ? operadorProvider.operador.image.isNotEmpty
                             ? Image.network(
-                                'http://192.168.1.161:9000/imagenes_operadores/${operadorProvider.operador.image}')
+                                'http://192t.168.1.161:9000/imagenes_operadores/${operadorProvider.operador.image}')
                             : Image.asset(
                                 'assets/images/logo.png',
                                 width: 300,
@@ -179,91 +179,49 @@ class AddOperador extends StatelessWidget {
                                 fit: BoxFit.fill,
                               )),
                 const SizedBox(height: 15),
-                TextFormField(
-                    initialValue: operadorProvider.operador.nombre,
-                    cursorColor: Colors.grey[700],
-                    decoration: InputDecoration(
-                        floatingLabelStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.9)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(18)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18)),
-                        labelText: 'Nombre del Operador'),
-                    onChanged: (value) {
-                      operadorProvider.operador.nombre = value;
-                    },
-                    validator: (value) => value!.isEmpty
-                        ? "Agregue el nombre del operador"
-                        : null,
-                    textInputAction: TextInputAction.next),
+                CustomTextFormField(
+                  height: 45,
+                  labelText: 'Nombre del Operador',
+                  obscuretext: false,
+                  onChanged: (value) {
+                    operadorProvider.operador.nombre = value;
+                  },
+                  validator: (value) =>
+                      value!.isEmpty ? "Agregue el nombre del operador" : null,
+                ),
                 const SizedBox(height: 15),
-                TextFormField(
-                    initialValue: operadorProvider.operador.rfc,
-                    cursorColor: Colors.grey[700],
-                    decoration: InputDecoration(
-                        floatingLabelStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.9)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(18)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18)),
-                        labelText: 'RFC'),
-                    onChanged: (value) {
-                      operadorProvider.operador.rfc = value;
-                    },
-                    validator: (value) =>
-                        value!.isEmpty ? "Agregue el RFC del operador" : null,
-                    textInputAction: TextInputAction.next),
+                CustomTextFormField(
+                  height: 45,
+                  labelText: 'RFC',
+                  obscuretext: false,
+                  onChanged: (value) {
+                    operadorProvider.operador.rfc = value;
+                  },
+                  validator: (value) =>
+                      value!.isEmpty ? "Agregue el RFC del operador" : null,
+                ),
                 const SizedBox(height: 15),
-                TextFormField(
-                    initialValue: operadorProvider.operador.linea,
-                    cursorColor: Colors.grey[700],
-                    decoration: InputDecoration(
-                        floatingLabelStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.9)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(18)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18)),
-                        labelText: 'Linea Transportista'),
-                    onChanged: (value) {
-                      operadorProvider.operador.linea = value;
-                    },
-                    validator: (value) => value!.isEmpty
-                        ? "Agregue la linea transportista"
-                        : null,
-                    textInputAction: TextInputAction.next),
+                CustomTextFormField(
+                  height: 45,
+                  labelText: 'Linea Transportista',
+                  obscuretext: false,
+                  onChanged: (value) {
+                    operadorProvider.operador.linea = value;
+                  },
+                  validator: (value) =>
+                      value!.isEmpty ? "Agregue la linea transportista" : null,
+                ),
                 const SizedBox(height: 15),
-                TextFormField(
-                    initialValue: operadorProvider.operador.scac,
-                    cursorColor: Colors.grey[700],
-                    decoration: InputDecoration(
-                        floatingLabelStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.9)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(18)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18)),
-                        labelText: 'SCAC'),
-                    onChanged: (value) {
-                      operadorProvider.operador.scac = value;
-                    },
-                    validator: (value) =>
-                        value!.isEmpty ? "Agregue el SCAC" : null,
-                    textInputAction: TextInputAction.done),
+                CustomTextFormField(
+                  height: 45,
+                  labelText: 'SCAC',
+                  obscuretext: false,
+                  onChanged: (value) {
+                    operadorProvider.operador.scac = value;
+                  },
+                  validator: (value) =>
+                      value!.isEmpty ? "Agregue el SCAC" : null,
+                ),
               ],
             ),
           ),

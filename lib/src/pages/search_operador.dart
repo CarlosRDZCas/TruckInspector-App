@@ -144,8 +144,8 @@ class SearchOperador extends StatelessWidget {
                                         backgroundColor:
                                             MaterialStatePropertyAll(
                                                 Colors.green)),
-                                    onPressed: () => Navigator.pushNamed(
-                                        context, 'addoperador'),
+                                    onPressed: () => Navigator.popAndPushNamed(
+                                        context, 'addintercambio'),
                                     child: const Text('Confirmar'),
                                   ),
                                 ],
@@ -176,26 +176,29 @@ class CustomTextField extends StatelessWidget {
     final operadorProvider = Provider.of<OperadorProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
-      child: TextField(
-          controller: operadorProvider.controllerOperador,
-          cursorColor: Colors.grey[700],
-          decoration: InputDecoration(
-              prefixIcon: const Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              floatingLabelStyle:
-                  TextStyle(color: Colors.black.withOpacity(0.9)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.black),
-                  borderRadius: BorderRadius.circular(20)),
-              fillColor: Colors.white,
-              filled: true,
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-              labelText: 'Buscar operador'),
-          onChanged: operadorProvider.searchOperador,
-          textInputAction: TextInputAction.done),
+      child: SizedBox(
+        height: 45,
+        child: TextField(
+            controller: operadorProvider.controllerOperador,
+            cursorColor: Colors.grey[700],
+            decoration: InputDecoration(
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
+                floatingLabelStyle:
+                    TextStyle(color: Colors.black.withOpacity(0.9)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(20)),
+                fillColor: Colors.white,
+                filled: true,
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                labelText: 'Buscar operador'),
+            onChanged: operadorProvider.searchOperador,
+            textInputAction: TextInputAction.done),
+      ),
     );
   }
 }

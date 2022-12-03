@@ -154,8 +154,8 @@ class ListIntercambioCard extends StatelessWidget {
               Image.asset(
                 'assets/images/logo.png',
                 fit: BoxFit.fill,
-                width: 70,
-                height: 110,
+                width: 50,
+                height: 100,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trailerinspector/src/components/components.dart';
+import 'package:trailerinspector/src/widgets/widgets.dart';
 
 import '../provider/providers.dart';
 import '../services/services.dart';
@@ -49,49 +50,30 @@ class FormLogin extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                    cursorColor: Colors.grey[700],
-                    decoration: InputDecoration(
-                        floatingLabelStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.9)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(18)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18)),
-                        labelText: 'Usuario'),
-                    onChanged: (value) {
-                      authProvider.user = value;
-                    },
-                    validator: (value) =>
-                        value!.isEmpty ? "Ingrese el usuario" : null,
-                    textInputAction: TextInputAction.next),
+                CustomTextFormField(
+                  height: 45,
+                  labelText: 'Usuario',
+                  obscuretext: false,
+                  onChanged: (value) {
+                    authProvider.user = value;
+                  },
+                  validator: (value) =>
+                      value!.isEmpty ? "Ingrese el usuario" : null,
+                ),
                 const SizedBox(height: 30),
-                TextFormField(
-                    obscureText: true,
-                    cursorColor: Colors.grey[700],
-                    decoration: InputDecoration(
-                        floatingLabelStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.9)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(18)),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18)),
-                        labelText: 'Contraseña'),
-                    onChanged: (value) {
-                      authProvider.password = value;
-                    },
-                    validator: (value) {
-                      return (value != null && value.length >= 6)
-                          ? null
-                          : "La contraseña debe tener al menos 6 caracteres";
-                    },
-                    textInputAction: TextInputAction.next),
+                CustomTextFormField(
+                  height: 45,
+                  labelText: 'Contraseña',
+                  obscuretext: true,
+                  onChanged: (value) {
+                    authProvider.password = value;
+                  },
+                  validator: (value) {
+                    return (value != null && value.length >= 6)
+                        ? null
+                        : "La contraseña debe tener al menos 6 caracteres";
+                  },
+                ),
                 const SizedBox(height: 10),
                 Row(children: [
                   Checkbox(
@@ -101,7 +83,7 @@ class FormLogin extends StatelessWidget {
                       fillColor:
                           MaterialStateProperty.all(CustomColors.primary)),
                   const Text('Recordar'),
-                  const SizedBox(width: 80),
+                  const SizedBox(width: 60),
                   TextButton(
                       child: const Text('Olvide mi contraseña'),
                       onPressed: () {})
