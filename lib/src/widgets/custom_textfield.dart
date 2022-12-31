@@ -5,6 +5,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscuretext;
   final String labelText;
+    final String? initialValue;
   final double height;
   const CustomTextFormField(
       {super.key,
@@ -12,13 +13,14 @@ class CustomTextFormField extends StatelessWidget {
       this.validator,
       required this.labelText,
       required this.obscuretext,
-      required this.height});
+      required this.height, this.initialValue});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
       child: TextFormField(
+        initialValue:initialValue ,
           obscureText: obscuretext,
           cursorColor: Colors.grey[700],
           decoration: InputDecoration(

@@ -102,10 +102,11 @@ class CustomDrawer extends StatelessWidget {
         const Divider(color: Colors.grey),
         ListTile(
           title: const Text('Cajones'),
-          leading: const Icon(Icons.add_road),
+          leading: Image.asset('assets/images/cajones.png',
+              height: 28, color: Colors.black87),
           onTap: () {},
         ),
-        const Divider(color: Colors.grey),
+        const Divider(color: Colors.grey,height: 10,),
         ListTile(
           title: const Text('Reportes'),
           leading: const Icon(Icons.bar_chart),

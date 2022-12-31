@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:trailerinspector/src/components/components.dart';
 import 'package:trailerinspector/src/models/models.dart';
 
+import '../global/enviroment.dart';
 import '../provider/providers.dart';
 import '../widgets/widgets.dart';
 
@@ -49,7 +50,10 @@ class AddOperador extends StatelessWidget {
         backgroundColor: CustomColors.primary,
         child: const Icon(Icons.save),
       ),
-      appBar: const CustomAppbar(title: 'Operador'),
+      appBar: CustomAppbar(
+          title: operadorProvider.operador.nombre != ''
+              ? operadorProvider.operador.nombre
+              : 'Operador'),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -88,8 +92,7 @@ class AddOperador extends StatelessWidget {
                                                 operadorProvider.operador.linea,
                                             scac:
                                                 operadorProvider.operador.scac,
-                                            image: operadorProvider
-                                                .operador.image);
+                                            image: operadorProvider.image);
                                     Navigator.pop(context);
                                   },
                                 ),
@@ -110,8 +113,7 @@ class AddOperador extends StatelessWidget {
                                                 operadorProvider.operador.linea,
                                             scac:
                                                 operadorProvider.operador.scac,
-                                            image: operadorProvider
-                                                .operador.image);
+                                            image: operadorProvider.image);
                                     Navigator.pop(context);
                                   },
                                 ),
@@ -132,8 +134,7 @@ class AddOperador extends StatelessWidget {
                                                 operadorProvider.operador.linea,
                                             scac:
                                                 operadorProvider.operador.scac,
-                                            image: operadorProvider
-                                                .operador.image);
+                                            image: operadorProvider.image);
                                     Navigator.pop(context);
                                   },
                                 ),
@@ -154,16 +155,15 @@ class AddOperador extends StatelessWidget {
                       );
                     },
                     child: operadorProvider.image.isEmpty
-                        ? operadorProvider.operador.image.isNotEmpty
-                            ? Image.network(
-                                'http://192t.168.1.161:9000/imagenes_operadores/${operadorProvider.operador.image}')
-                            : Image.asset(
-                                'assets/images/logo.png',
-                                width: 300,
-                                height: 250,
-                                fit: BoxFit.fill,
-                              )
-                        : operadorProvider.operador.image.isEmpty
+                        ? Image.asset(
+                            'assets/images/logo.png',
+                            width: 300,
+                            height: 250,
+                            fit: BoxFit.fill,
+                          )
+                        : File(path.join(operadorProvider.directoryPath,
+                                    operadorProvider.image))
+                                .existsSync()
                             ? Image.file(
                                 File(path.join(operadorProvider.directoryPath,
                                     operadorProvider.image)),
@@ -171,15 +171,24 @@ class AddOperador extends StatelessWidget {
                                 height: 250,
                                 fit: BoxFit.fill,
                               )
-                            : Image.file(
-                                File(path.join(operadorProvider.directoryPath,
-                                    operadorProvider.image)),
-                                width: 300,
-                                height: 250,
-                                fit: BoxFit.fill,
+                            : FadeInImage.assetNetwork(
+                                placeholder: 'assets',
+                                image:
+                                    '${Enviroment.HOST_URL}/imagenes_operadores/${operadorProvider.operador.image}',
+                                imageErrorBuilder:
+                                    (context, error, stackTrace) {
+                                  return Image.asset(
+                                    'assets/images/logo.png',
+                                    width: 300,
+                                    height: 250,
+                                    fit: BoxFit.fill,
+                                  );
+                                },
                               )),
+                              
                 const SizedBox(height: 15),
                 CustomTextFormField(
+                  initialValue: operadorProvider.operador.nombre,
                   height: 45,
                   labelText: 'Nombre del Operador',
                   obscuretext: false,
@@ -191,6 +200,7 @@ class AddOperador extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 CustomTextFormField(
+                  initialValue: operadorProvider.operador.rfc,
                   height: 45,
                   labelText: 'RFC',
                   obscuretext: false,
@@ -202,6 +212,7 @@ class AddOperador extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 CustomTextFormField(
+                  initialValue: operadorProvider.operador.linea,
                   height: 45,
                   labelText: 'Linea Transportista',
                   obscuretext: false,
@@ -213,6 +224,7 @@ class AddOperador extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 CustomTextFormField(
+                  initialValue: operadorProvider.operador.scac,
                   height: 45,
                   labelText: 'SCAC',
                   obscuretext: false,
