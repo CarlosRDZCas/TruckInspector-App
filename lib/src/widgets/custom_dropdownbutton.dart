@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomDropDownButton extends StatelessWidget {
   final double radius;
   final String hint;
+  final String? value;
   final List<DropdownMenuItem<String>>? items;
   final void Function(String?)? onChanged;
   const CustomDropDownButton({
@@ -11,6 +12,7 @@ class CustomDropDownButton extends StatelessWidget {
     required this.hint,
     this.items,
     this.onChanged,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class CustomDropDownButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: DropdownButton(
+            value: value,
             borderRadius: BorderRadius.circular(8),
             hint: Text(hint),
             isExpanded: true,

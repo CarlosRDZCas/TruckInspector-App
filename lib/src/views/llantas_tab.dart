@@ -1,6 +1,4 @@
-
 import 'dart:io';
-
 
 import 'package:path/path.dart' as path;
 import 'package:flutter/material.dart';
@@ -44,6 +42,7 @@ class LlantasTab extends StatelessWidget {
         const SizedBox(height: 10),
         CustomDropDownButton(
             radius: 18,
+            value: '',
             hint: 'Marca de la llanta',
             items: const [
               DropdownMenuItem(
@@ -98,6 +97,7 @@ class LlantasTab extends StatelessWidget {
             : Container(),
         const SizedBox(height: 10),
         CustomDropDownButton(
+            value: '',
             radius: 18,
             hint: 'Marca de la llanta',
             items: const [
@@ -153,6 +153,7 @@ class LlantasTab extends StatelessWidget {
             : Container(),
         const SizedBox(height: 10),
         CustomDropDownButton(
+            value: '',
             radius: 18,
             hint: 'Marca de la llanta',
             items: const [
@@ -209,6 +210,7 @@ class LlantasTab extends StatelessWidget {
         const SizedBox(height: 10),
         CustomDropDownButton(
             radius: 18,
+            value: '',
             hint: 'Marca de la llanta',
             items: const [
               DropdownMenuItem(
@@ -264,6 +266,7 @@ class LlantasTab extends StatelessWidget {
         const SizedBox(height: 10),
         CustomDropDownButton(
             radius: 18,
+            value: '',
             hint: 'Marca de la llanta',
             items: const [
               DropdownMenuItem(
@@ -320,6 +323,7 @@ class LlantasTab extends StatelessWidget {
         CustomDropDownButton(
             radius: 18,
             hint: 'Marca de la llanta',
+            value: '',
             items: const [
               DropdownMenuItem(
                   value: 'Bridgestone', child: Text('Bridgestone')),
@@ -374,6 +378,7 @@ class LlantasTab extends StatelessWidget {
         const SizedBox(height: 10),
         CustomDropDownButton(
             radius: 18,
+            value: '',
             hint: 'Marca de la llanta',
             items: const [
               DropdownMenuItem(
@@ -429,6 +434,7 @@ class LlantasTab extends StatelessWidget {
         const SizedBox(height: 10),
         CustomDropDownButton(
             radius: 18,
+            value: '',
             hint: 'Marca de la llanta',
             items: const [
               DropdownMenuItem(
@@ -465,7 +471,6 @@ class LlantasTab extends StatelessWidget {
     );
   }
 }
-
 
 class AddImage extends StatelessWidget {
   final int imageNumber;
@@ -898,7 +903,7 @@ class AddImage extends StatelessWidget {
             );
           },
           child: Center(
-              child:addintercambioProvider.image5.isEmpty
+              child: addintercambioProvider.image5.isEmpty
                   ? Image.asset(
                       'assets/images/logo.png',
                       width: 300,
@@ -988,7 +993,7 @@ class AddImage extends StatelessWidget {
             );
           },
           child: Center(
-              child:addintercambioProvider.image6.isEmpty
+              child: addintercambioProvider.image6.isEmpty
                   ? Image.asset(
                       'assets/images/logo.png',
                       width: 300,
@@ -1140,6 +1145,7 @@ class AddImage extends StatelessWidget {
                         onTap: () async {
                           final image = await Camara.takePhotoFromGallery();
                           addintercambioProvider.image8 = image!.name;
+                          
                           Navigator.pop(context);
                         },
                       ),
@@ -1168,7 +1174,7 @@ class AddImage extends StatelessWidget {
             );
           },
           child: Center(
-              child:addintercambioProvider.image8.isEmpty
+              child: addintercambioProvider.image8.isEmpty
                   ? Image.asset(
                       'assets/images/logo.png',
                       width: 300,
@@ -1204,4 +1210,3 @@ class AddImage extends StatelessWidget {
     }
   }
 }
-

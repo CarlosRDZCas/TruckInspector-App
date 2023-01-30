@@ -35,6 +35,11 @@ class TruckInspector extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SearchProvider()),
         ChangeNotifierProvider(create: (_) => OperadorProvider()),
         ChangeNotifierProvider(create: (_) => AddIntercambioProvider()),
+        ChangeNotifierProvider(create: (_) => DatosProvider()),
+        ChangeNotifierProvider(create: (_) => CajaProvider()),
+        ChangeNotifierProvider(create: (_) => FrontalDerechoProvider()),
+        ChangeNotifierProvider(create: (_) => LateralDerechoProvider()),
+        ChangeNotifierProvider(create: (_) => PuertasProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

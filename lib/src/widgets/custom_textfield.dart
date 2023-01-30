@@ -5,22 +5,27 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscuretext;
   final String labelText;
-    final String? initialValue;
+  final bool? readOnly;
+  final String? initialValue;
   final double height;
-  const CustomTextFormField(
-      {super.key,
-      this.onChanged,
-      this.validator,
-      required this.labelText,
-      required this.obscuretext,
-      required this.height, this.initialValue});
+  const CustomTextFormField({
+    super.key,
+    this.onChanged,
+    this.validator,
+    required this.labelText,
+    required this.obscuretext,
+    required this.height,
+    this.initialValue,
+    this.readOnly,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
       child: TextFormField(
-        initialValue:initialValue ,
+          readOnly: readOnly ?? false,
+          initialValue: initialValue,
           obscureText: obscuretext,
           cursorColor: Colors.grey[700],
           decoration: InputDecoration(

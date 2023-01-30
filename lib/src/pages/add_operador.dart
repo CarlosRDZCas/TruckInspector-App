@@ -185,7 +185,6 @@ class AddOperador extends StatelessWidget {
                                   );
                                 },
                               )),
-                              
                 const SizedBox(height: 15),
                 CustomTextFormField(
                   initialValue: operadorProvider.operador.nombre,
